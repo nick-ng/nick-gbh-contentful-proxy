@@ -5,6 +5,10 @@ const badNumbers = [
   '80085',
 ];
 
+const xingkaiParseInt = a => a - 0;
+
+const objectIndexer = (id = 'id') => a => Object.keys(a).reduce((prev, curr) => Object.assign({}, prev, { [a[curr][id]]: a[curr] }), {});
+
 const calcKeyLength = numberOfKeys => Math.max(Math.floor(Math.log10(numberOfKeys * 2)) + 1, 2);
 
 const randomString = (strLength, charSet = '0123456789') => {
@@ -28,6 +32,9 @@ const generateNewKey = (keyList) => {
 };
 
 module.exports = {
+  xingkaiParseInt,
+  objectIndexer,
+  calcKeyLength,
   randomString,
   generateNewKey,
 };
