@@ -29,6 +29,11 @@ const getPlayerList = client => async (req, res) => {
   res.send(objectIndexer('name')(contentfulCleaner(response.items)));
 };
 
+const getPlayerListRaw = client => async (req, res) => {
+  const response = await client.getEntries(queryParser({ content_type: 'player' })(req.query));
+  res.send(response.items);
+};
+
 module.exports = space => (accessToken) => {
   const client = contentful.createClient({
     space,
@@ -37,6 +42,7 @@ module.exports = space => (accessToken) => {
 
   return {
     getPlayerList: getPlayerList(client),
+    getPlayerListRaw: getPlayerListRaw(client),
     getVeteranRage: async (_, res) => res.send(await client.getEntry('5KflVRZT5C4IsIG0qQCaYq')),
   };
 };
