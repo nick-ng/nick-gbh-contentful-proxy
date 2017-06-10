@@ -1,6 +1,9 @@
 # Redis files
 dump.rdb
 
+# Environment variables
+.env
+
 # Logs
 logs
 *.log
