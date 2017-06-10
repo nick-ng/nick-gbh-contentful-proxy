@@ -1,6 +1,9 @@
 {
   "name": "nick-gbh-contentful-proxy",
   "version": "0.0.0",
+  "engines": {
+    "node": "8.1.0"
+  },
   "description": "Contentful proxy to hide access keys.",
   "main": "index.js",
   "scripts": {
