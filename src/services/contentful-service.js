@@ -1,14 +1,16 @@
 const contentful = require('contentful');
 
-const contentfulService = async space => (accessToken) => {
+module.exports = space => (accessToken) => {
   const client = contentful.createClient({
     space,
     accessToken,
   });
 
   return {
-    getPlayerList: () => client.getEntry('5KflVRZT5C4IsIG0qQCaYq'),
+    getPlayerList: (_, res) => res.send('Nothing here'),
+    getVeteranRage: async (_, res) => {
+      const response = await client.getEntry('5KflVRZT5C4IsIG0qQCaYq');
+      res.send(response);
+    },
   };
 };
-
-module.exports = contentfulService;
