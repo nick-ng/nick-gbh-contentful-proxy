@@ -20,6 +20,8 @@
   "dependencies": {
     "bluebird": ">=3.5.0",
     "body-parser": ">=1.17.2",
+    "contentful": ">=4.4.3",
+    "dotenv-safe": ">=4.0.4",
     "express": ">=4.15.3",
     "redis": ">=2.7.1",
     "uuid": ">=3.0.1",
