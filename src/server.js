@@ -1,6 +1,5 @@
 require('dotenv-safe').load();
 const express = require('express');
-const path = require('path');
 const bodyParser = require('body-parser');
 
 const {
@@ -11,7 +10,6 @@ const {
 } = require('./services/contentful-service')(process.env.CONTENTFUL_GBH_SPACE)(process.env.CONTENTFUL_ACCESS_TOKEN);
 
 const PORT = process.env.PORT || 4001;
-const INDEX = path.join(__dirname, 'public', 'index.html');
 
 const server = express();
 server.use(bodyParser.json());
@@ -33,5 +31,5 @@ server.get('/guilds', getGuildList);
 server.get('/player-list', getPlayerList);
 server.get('/player-list-raw', getPlayerListRaw);
 
-server.use((req, res) => res.sendFile(INDEX));
+server.use((req, res) => res.sendStatus(404)); // Not servering from root.
 server.listen(PORT, () => console.log(`Listening on ${PORT}`));
