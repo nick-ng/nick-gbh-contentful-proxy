@@ -12,7 +12,6 @@ const {
 
 const PORT = process.env.PORT || 4001;
 const INDEX = path.join(__dirname, 'public', 'index.html');
-// const LEGACY_WARNING = 'This route will be deprecated soon. Please switch to the appropriate route.';
 
 const server = express();
 server.use(bodyParser.json());
