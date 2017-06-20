@@ -38,10 +38,10 @@ const initGame = (coachId, gameId) => {
     .then(() => client.quit());
 };
 
-const makeNewGame = coachId => checkId(coachId)
-  .then(newCoachId => autoScan('*:log')
+const makeNewGame = (coachId) => checkId(coachId)
+  .then((newCoachId) => autoScan('*:log')
     .then((gameLogs) => {
-      const gameList = gameLogs.map(gameLog => gameLog.replace(':log', ''));
+      const gameList = gameLogs.map((gameLog) => gameLog.replace(':log', ''));
       const gameId = generateNewKey(gameList);
       initGame(newCoachId, gameId);
       return { coachId: newCoachId, gameId };

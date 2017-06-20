@@ -19,28 +19,28 @@ const contentfulCleaner = (a) => {
     }, {});
   }
   if (a instanceof Array) {
-    return a.map(b => contentfulCleaner(b));
+    return a.map((b) => contentfulCleaner(b));
   }
   return a;
 };
 
-const getPlayerList = client => async (req, res) => {
+const getPlayerList = (client) => async (req, res) => {
   const response = await client.getEntries(queryParser({ content_type: 'player' })(req.query));
   res.send(objectIndexer('name')(contentfulCleaner(response.items)));
 };
 
-const getGuildList = client => async (req, res) => {
+const getGuildList = (client) => async (req, res) => {
   const response = await client.getEntries(queryParser({ content_type: 'guild' })(req.query));
   res.send(objectIndexer('name')(contentfulCleaner(response.items)));
 };
 
 // Demo method.
-const getPlayerListRaw = client => async (req, res) => {
+const getPlayerListRaw = (client) => async (req, res) => {
   const response = await client.getEntries(queryParser({ content_type: 'player' })(req.query));
   res.send(response.items);
 };
 
-module.exports = space => (accessToken) => {
+module.exports = (space) => (accessToken) => {
   const client = contentful.createClient({
     space,
     accessToken,

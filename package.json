@@ -2,13 +2,15 @@
   "name": "nick-gbh-contentful-proxy",
   "version": "0.0.0",
   "engines": {
-    "node": "8.1.0"
+    "node": "8.1.1"
   },
   "description": "Contentful proxy to hide access keys.",
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "server": "node index.js"
+    "server": "node index.js",
+    "eslint": "eslint ./src",
+    "esflint": "eslint ./src --fix"
   },
   "repository": {
     "type": "git",

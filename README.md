@@ -1,2 +1,2 @@
-# nick-gbh-server
-Server to host Guildball games.
+# nick-contentful-proxy
+Proxy to keep Contentful API keys secret.
