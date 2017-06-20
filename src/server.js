@@ -31,5 +31,4 @@ server.get('/guilds', getGuildList);
 server.get('/player-list', getPlayerList);
 server.get('/player-list-raw', getPlayerListRaw);
 
-server.use((req, res) => res.sendStatus(404)); // Not servering from root.
 server.listen(PORT, () => console.log(`Listening on ${PORT}`));
