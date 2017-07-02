@@ -7,15 +7,15 @@ const contentfulCleaner = (a) => {
   if (a instanceof Object) {
     return Object.keys(a).reduce((prev, curr) => {
       if (curr === 'sys') {
-        return prev;
+        return Object.assign(prev, { updatedAt: a.sys.updatedAt });
       }
       if (curr === 'fields') {
-        return Object.assign({}, prev, contentfulCleaner(a[curr]));
+        return Object.assign(prev, contentfulCleaner(a[curr]));
       }
       if (curr === 'file') {
-        return Object.assign({}, prev, { url: a[curr].url });
+        return Object.assign(prev, { url: a[curr].url });
       }
-      return Object.assign({}, prev, { [curr]: contentfulCleaner(a[curr]) });
+      return Object.assign(prev, { [curr]: contentfulCleaner(a[curr]) });
     }, {});
   }
   if (a instanceof Array) {
