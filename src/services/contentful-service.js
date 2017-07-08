@@ -24,14 +24,26 @@ const contentfulCleaner = (a) => {
   return a;
 };
 
+const getAllEntries = (client) => (options = {}) => async (query = {}) => {
+  const items = [];
+  let total = 1;
+  while (items.length < total) {
+    // Get entries then check if there are any more pages.
+    const response = await client.getEntries(queryParser(Object.assign({ skip: items.length }, options))(query)); // eslint-disable-line no-await-in-loop
+    items.push(...response.items);
+    total = response.total;
+  }
+  return contentfulCleaner({ items }).items;
+};
+
 const getPlayerList = (client) => async (req, res) => {
-  const response = await client.getEntries(queryParser({ content_type: 'player' })(req.query));
-  res.send(objectIndexer('name')(contentfulCleaner(response.items)));
+  const items = await getAllEntries(client)({ content_type: 'player' })(req.query);
+  res.send(objectIndexer('name')(items));
 };
 
 const getGuildList = (client) => async (req, res) => {
-  const response = await client.getEntries(queryParser({ content_type: 'guild' })(req.query));
-  res.send(objectIndexer('name')(contentfulCleaner(response.items)));
+  const items = await getAllEntries(client)({ content_type: 'guild' })(req.query);
+  res.send(objectIndexer('name')(items));
 };
 
 // Demo method.
